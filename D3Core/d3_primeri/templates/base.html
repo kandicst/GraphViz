@@ -30,6 +30,14 @@
           {% block links %}{% endblock %}
       </div>
       <div class="center pt-3">
+          <svg height="900"></svg>
+          <script>
+              var svg = d3.select("svg")
+              .call(d3.behavior.zoom().on("zoom", function () {
+                svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
+              }))
+              .append("g");
+          </script>
           {% block content %}{% endblock %}
       </div>
 </div>

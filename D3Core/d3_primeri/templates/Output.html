@@ -36,22 +36,23 @@
     </script>
     {% endblock %}
     {% block content %}
-    <div id="outer" class="container-fluid">
-        <svg height="900">
-        </svg>
-    </div>
+<!--    <div id="outer" class="container-fluid">-->
+<!--        <svg height="900">-->
+<!--        </svg>-->
+<!--    </div>-->
     <script>
 
-        var svg = d3.select("svg"),
-        height = svg.node().getBoundingClientRect().height - 50,
-        width = svg.node().getBoundingClientRect().width - 50
+        var svg = d3.select("svg").append("g"),
+        height = d3.select("svg").node().getBoundingClientRect().height - 50,
+        width = d3.select("svg").node().getBoundingClientRect().width - 50
         zoom = d3.behavior.zoom().scaleExtent([0.1 ,7])
         color = d3.scale.category10();
 
         var highlight_node = null;
-        var highlight_color = "green";
+        var highlight_color = "#B8DE75";
         var highlight_trans = 0.1;
         var default_link_color = "#ccc";
+        var text_color = "#373D3F";
 
         var nominal_base_node_size = 8;
         var nominal_text_size = 10;
@@ -103,14 +104,14 @@
                     .links(links)
                     .on("tick", tick)
                     .gravity(0.05)
-                    .charge(-200)
+                    .charge(-300)
                     .linkDistance(300)
                     .start();
 
         // elementi se centriraju kad se menja window size
         d3.select(window).on('resize', function() {
-            height = svg.node().getBoundingClientRect().height - 50;
-            width = svg.node().getBoundingClientRect().width - 50;
+            height = d3.select("svg").node().getBoundingClientRect().height - 50;
+            width = d3.select("svg").node().getBoundingClientRect().width - 50;
             force.size([width, height]);
             force.start();
         });
@@ -138,7 +139,7 @@
         var text = node.append("text")
             .attr("dx", 15)
             .text(function(d){ return d.name; })
-            .style('fill' , '#373D3F')
+            .style('fill' , 'text_color')
             .attr("font-size", function(d){ return d.influence * 1.5 > 11 ? d.influence*1.5: 11; })
 
 
@@ -179,16 +180,6 @@
             link.attr("y2", function(d){ return d.target.y; });
         }
 
-        //ne radi iz nekog razloga?
-         svg.append("svg")
-          .attr("width", "100%")
-          .attr("height", "100%")
-          .call(d3.behavior.zoom().on("zoom", function () {
-            svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
-          }))
-          .append("g")
-
-
         node.on("mouseover", function(d) {
             set_highlight(d);
         })
@@ -220,7 +211,7 @@
                 return isConnected(d, o) ? 5 : 0;
             });
             text.style("font-weight", function(o) {
-                return isConnected(d, o) ? "bold" : "normal";
+                return isConnected(d, o) ? 550 : "normal";
             });
             link.style("stroke", function(o) {
               return o.source.index == d.index || o.target.index == d.index ? highlight_color : ((isNumber(o.score) && o.score>=0)?color(o.score):default_link_color);

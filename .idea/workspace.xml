@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="86a1277f-9992-46a0-931a-0294fbe90e6a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="86a1277f-9992-46a0-931a-0294fbe90e6a" name="Default" comment="nodes highlighting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/D3Core/d3_primeri/templates/Output.html" beforeDir="false" afterPath="$PROJECT_DIR$/D3Core/d3_primeri/templates/Output.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/D3Core/d3_primeri/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/D3Core/d3_primeri/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/D3Core/d3_primeri/templates/primerPanZoom.html" beforeDir="false" afterPath="$PROJECT_DIR$/D3Core/d3_primeri/templates/primerPanZoom.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vizualizacija/prikaz/kod/forceMOJ.html" beforeDir="false" afterPath="$PROJECT_DIR$/Vizualizacija/prikaz/kod/forceMOJ.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -255,6 +256,14 @@
       <option name="presentableId" value="Default" />
       <updated>1481367724118</updated>
     </task>
+    <task id="LOCAL-00001" summary="nodes highlighting">
+      <created>1579845832802</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1579845832802</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -275,6 +284,10 @@
     <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
       <collection />
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="nodes highlighting" />
+    <option name="LAST_COMMIT_MESSAGE" value="nodes highlighting" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
