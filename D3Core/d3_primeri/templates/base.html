@@ -1,0 +1,51 @@
+{% extends "navbar.html" %}
+{% block nav %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <script type="text/javascript" src="https://d3js.org/d3.v3.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <link rel="stylesheet" href=" {% static 'css/bootstrap.min.css' %}">
+    <title>{{title}}</title>
+    {% block head_sadrzaj %}{% endblock %}
+</head>
+<body>
+<div class="page">
+      <div class="left pt-5">
+          <ul>
+              <li>
+                  <a href="{% url 'prodavnica_force_layout' %}">Prodavnica force layout</a>
+              </li>
+              <li>
+                  <a href="{% url 'prodavnica_tree_layout' %}">Prodavnica tree layout</a>
+              </li>
+          </ul>
+          <ul>
+              <li>
+                  <a href="{% url 'primerPanZoom' %}">Primer Pan Zoom</a>
+              </li>
+          </ul>
+          {% block links %}{% endblock %}
+      </div>
+      <div class="center pt-3">
+          {% block content %}{% endblock %}
+      </div>
+</div>
+
+    <footer class="site-footer navbar-dark bg-dark fixed-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12 text-light">
+            <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by
+         <a href="#">10072019</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+</body>
+</html>
+{% endblock %}
