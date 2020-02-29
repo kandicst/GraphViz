@@ -1,0 +1,189 @@
+{% extends "prikaz_komponenta.html" %}
+{% block head_sadrzaj %}
+ <head>
+</head>
+ {% endblock %}
+
+{% block component %}
+ <script>
+
+      /**
+       * Funkcija koja implementira "interfejs" core modula
+       * za graficki prikaz ucitanih elemenata
+       * @param  {JSON} data  ucitani podaci u obliku grafa {nodes : {}, links : {}}
+       * @param  {SVGElement} svg Kontejner za graficke elemente
+       * @param  {SVGElement} container <g> element unutar <svg> koji grupise kreirane elemente
+       */
+        draw = function draw(data, svg, container) {
+
+            height = svg.node().getBoundingClientRect().height - 50,
+            width = svg.node().getBoundingClientRect().width - 50
+            color = d3.scale.category10();
+            svg.style("cursor","move");
+
+            // konstante za boje elemenata
+            var highlight_node = null;
+            var highlight_color = "#B8DE75";
+            var default_link_color = "#ccc";
+            var text_color = "#FAEBEFFF";
+
+            nodes = data.nodes;
+            links = data.links;
+
+            // postavi source i target na cvor a ne samo njegov id
+            links.forEach(function(link) {
+                link.source = nodes.find(x => x.id == link.source_id)
+                link.target = nodes.find(x => x.id == link.target_id)
+                link.weight = Number(link.weight);
+            });
+
+            //struktura za lako proveravanje povezanosti 2 cvora
+            var linkedByIndex = [];
+            links.forEach(function(d) {
+                linkedByIndex.push(d.source_id + "," + d.target_id);
+            });
+
+            //kreiranje force layouta
+            var force = d3.layout.force()
+                        .size([width, height])
+                        .nodes(nodes)
+                        .links(links)
+                        .on("tick", tick)
+                        .gravity(0)
+                        .charge(-250)
+                        .linkDistance(600)
+                        .start();
+
+            // elementi se centriraju kad se menja window size
+            d3.select(window).on('resize', function() {
+                height = svg.node().getBoundingClientRect().height - 50;
+                width = svg.node().getBoundingClientRect().width - 50;
+                force.size([width, height]);
+                force.start();
+            });
+
+            // da ne dodje do preklapanja sa pan/zoom
+            var drag = force.drag().on("dragstart", function() {
+                d3.event.sourceEvent.stopPropagation();
+            });
+
+            //dodavanje veza izmedju cvorova
+            var link = container.selectAll(".link")
+                    .data(links)
+                    .enter()
+                    .append("line")
+                    .attr("class", "link")
+                    .attr("stroke", default_link_color)
+                    .attr("stroke-width", function(d){ return d.weight/5;});
+
+            //cvorovi se moraju dodati posle grana
+            // da se ne bi videle linije preko kruga
+            var node = container.selectAll(".node")
+                    .data(nodes)
+                    .enter()
+                    .append("g")
+                    .attr("class", "node")
+
+            var text = node.append("text")
+                .attr("dx", 15)
+                .text(function(d){ return d.name; })
+                .style('fill' , function(d) {  return d.bold ? 'yellow' : text_color})
+                .style("font-weight", function(d) {  return d.bold ? 'bold' : 'normal'})
+                .attr("font-size", function(d){ return d.influence * 1.5 > 11 ? d.influence*1.5: 11; })
+
+            var circle = node.append("circle")
+                .attr("r", function(d){ return d.influence/2>5 ? d.influence/2 : 5; })
+                .attr("fill", function(d){ return color(d.group*10); })
+                .attr("data-legend",function(d) { return d.group});
+
+            // izdvoj izabran cvor i  njegove susede
+            node.on("mouseover", function(d) { set_highlight(d) })
+                .on("mouseout",  function(d) { exit_highlight() });
+
+            for (var i = 200; i > 0; --i) force.tick();
+
+            //////////////////////
+            // INTERNE FUNKCIJE //
+            //////////////////////
+
+          /**
+           * Funkcija koja reaguje na tick event force layouta
+           * @param {node} d jedan cvor iz ucitanih podataka
+           */
+            function tick (d) {
+
+                node.attr("transform", function(d) {return "translate(" + d.x + "," + d.y + ")";})
+                    .call(force.drag);
+
+                //koordinate veza
+                link.attr("x1", function(d){ return d.source.x; })
+                link.attr("y1", function(d){ return d.source.y; })
+                link.attr("x2", function(d){ return d.target.x; })
+                link.attr("y2", function(d){ return d.target.y; });
+            }
+
+
+          /**
+           * Boji misem izabrani cvor, njegove susede i veze
+           * @param  {node} d Cvor koji je trenutno izabran
+           */
+            function set_highlight(d)
+            {
+                container.style("cursor","pointer");
+                highlight_node = d;
+
+                circle.style("stroke", function(o) {
+                    return isConnected(d, o, linkedByIndex) ? highlight_color : "white";
+                });
+                circle.style('stroke-width', function(o) {
+                    return isConnected(d, o, linkedByIndex) ? 7 : 0;
+                });
+                text.style("font-weight", function(o) {
+                    return isConnected(d, o, linkedByIndex) ? 600 : "normal";
+                });
+                link.style("stroke", function(o) {
+                  return o.source.index == d.index || o.target.index == d.index ? highlight_color : ((isNumber(o.score) && o.score>=0)?color(o.score):default_link_color);
+                });
+
+            }
+
+          /**
+           * Nakon sto sklonimo mis sa cvora, vraca elemente na default boje
+           */
+            function exit_highlight()
+            {
+                highlight_node = null;
+                container.style("cursor","move");
+                circle.style("stroke", "white");
+                text.style("font-weight", "normal");
+                circle.style('stroke-width', 0);
+                link.style("stroke", function(o) {return (isNumber(o.score) && o.score>=0)?color(o.score):default_link_color});
+
+            }
+        }
+
+        //////////////////////
+        // POMOCNE FUNKCIJE //
+        //////////////////////
+
+      /**
+       * Funkcija koja vraca da li su dva cvora povezana u grafu
+       * @param  {node} a, b  cvorovi iz ucitanih podataka
+       * @return {Boolean}  da li su povezani ili ne
+       */
+        function isConnected(a, b, linkedByIndex) {
+            return linkedByIndex.includes(a.id + "," + b.id) || linkedByIndex.includes(b.id + "," + a.id) || a.id == b.id;
+        }
+
+      /**
+       * Pokusava  da parsira ulaz u broj
+       * @param  {object}   ulazni podatak
+       * @return {Boolean}  da li je broj ili ne
+       */
+        function isNumber(n) {
+          return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+
+
+       </script>
+ {% endblock %}

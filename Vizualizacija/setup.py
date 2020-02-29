@@ -4,10 +4,11 @@ setup(
     name="prikaz-obican",
     version="0.1",
     packages=find_packages(),
-    install_requires=['d3-primeri>=0.1'],
+    install_requires=['core-module>=0.1'],
     entry_points = {
-        'prikaz.obican':
-            ['prikaz_kod=prikaz.kod.prikaz_kod:Prikazi'],
+        'prikaz':
+            ['prikaz_obican=prikaz.kod.prikaz_kod:Prikazi'],
     },
+    package_data={'prikaz': ['templates/*.html']},
     zip_safe=True
 )

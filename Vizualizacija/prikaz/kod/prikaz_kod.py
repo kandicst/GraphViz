@@ -1,33 +1,39 @@
 
-
-# if __name__ == '__main__':
-#     from jinja2 import Template, Environment, FileSystemLoader
-#
-#     file_loader = FileSystemLoader('')
-#     env = Environment(loader=file_loader)
-#     template = env.get_template('forceMOJ.HTML')
-#     output = template.render()
-#     print(output)
 import os
+from core_module.services.prikazati import PrikazatiService
 
-from d3_primeri.models import Template
-from d3_primeri.services.ucitati import UcitatiService
+try:
+    import importlib.resources as pkg_resources
+except ImportError:
+    # Try backported to PY<37 `importlib_resources`.
+    import importlib_resources as pkg_resources
+
+# importuj modul gde se nalaze templejti
+from prikaz import templates
 
 
-class Prikazi(UcitatiService):
+class Prikazi(PrikazatiService):
+
+    def __init__(self):
+        self.raw_text = pkg_resources.read_text(templates, 'prikaz_obican.html')
+
     def naziv(self):
-        return "Ucitati template iz koda"
+        return "Obican prikaz"
+
     def identifier(self):
-        return "prikaz_kod"
+        return "prikaz_obican"
 
-    def ucitati(self):
-        Template.objects.all().delete()
+    def vrati_tekst(self):
+        template = pkg_resources.read_text(templates, 'prikaz_obican.html')
+        return template
 
-        files = os.listdir(os.curdir)  # files and directories
+    def vrati_head_sadrzaj(self):
+        self.raw_text = pkg_resources.read_text(templates, 'prikaz_obican.html')
+        return ""
 
-        with open('..//Vizualizacija//prikaz//kod//forceMOJ.html', 'r') as file:
-            data = file.read()
-            t1 = Template(sadrzaj=data)
-            t1.save()
+    def vrati_kod(self):
+        start = self.raw_text.find('<script>')
+        end = self.raw_text.find('</script>')
+        return self.raw_text[start+8 : end-1]
 
 

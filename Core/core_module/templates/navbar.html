@@ -1,0 +1,185 @@
+<nav style="height:8vh" class="navbar navbar-expand-sm bg-dark navbar-dark " id="navbar">
+    <!-- Brand -->
+    <a class="navbar-brand align-middle" href="/" id="home">GraphVizz</a>
+
+    <div class="container-fluid">
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <!-- Dropdown za ucitavanje -->
+            {% if plugini_ucitavanje|length > 0 %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle p-3 text-light" href="#" id="ucitavanjeDrop" data-toggle="dropdown">
+                    {% if request.session.plugin_ucitavanje_ime %}
+                    {{request.session.plugin_ucitavanje_ime}}
+                    {% else %}
+                    Ucitavanje
+                    {% endif %}
+                </a>
+                <div class="dropdown-menu">
+
+                    <!-- ako plugin nema formu onda idi direktno na ucitavanje-->
+                    {% for plugin in plugini_ucitavanje %}
+                    {% if plugin.form_fields|length > 0 %}
+                    <a data-toggle="modal" data-target="#{{plugin.identifier}}"
+                        class="dropdown-item point">{{plugin.naziv}}</a>
+
+                    {% else %}
+                    <a class="dropdown-item point drop-ucitavanje" id="{{plugin.identifier}}">{{plugin.naziv}}</a>
+                    {% endif %}
+
+                    {% endfor %}
+                </div>
+            </li>
+            {% else %}
+            <div class="text-warning px-3 pt-3">Nema plugina za ucitavanje</div>
+            {% endif %}
+
+            <!-- Dropdown za prikaz -->
+            {% if plugini_prikaz|length > 0 %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle p-3 text-light" href="#" id="prikazdrop" data-toggle="dropdown">
+                    {% if request.session.plugin_prikaz_ime %}
+                    {{request.session.plugin_prikaz_ime}}
+                    {% else %}
+                    Prikaz
+                    {% endif %}
+                </a>
+                <div class="dropdown-menu">
+                    {% for plugin in plugini_prikaz %}
+                    <!--        -->
+                    <a href="{% url 'prikaz_plugin' id=plugin.identifier %}" class="dropdown-item point drop-prikaz"
+                        id='{{plugin.identifier}}'>{{plugin.naziv}}</a>
+                    {% endfor %}
+                </div>
+            </li>
+            {% else %}
+            <label class="text-warning p-3">Nema plugina za prikaz</label>
+            {% endif %}
+        </ul>
+    </div>
+
+    <!-- Modal -->
+    {% for plugin in plugini_ucitavanje %}
+    <div class="modal fade" id="{{plugin.identifier}}" tabindex="-1" role="dialog"
+        aria-labelledby="{{plugin.identifier}}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="{{plugin.identifier}}">{{plugin.naziv}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form">
+                        {% for field in plugin.form_fields %}
+                        <!-- prikazuje obicne inpute -->
+                        {% if field.type != "checkbox" %}
+                        <div class="form-group">
+                            <label for="{{ field.id }}">{{ field.text }}</label>
+                            <input name="{{ field.id }}" type="{{ field.type }}" value="{{ field.value }}"
+                                class="form-control {{plugin.identifier}}" id="{{ field.id }}">
+                        </div>
+                        {% else %}
+                        <!-- prikazuje checkbox inpute -->
+                        <div class="form-check">
+                            <input type="checkbox" name="{{ field.id }}" class="form-check-input {{plugin.identifier}}" id="{{ field.id }}">
+                            <label class="form-check-label" for="{{ field.id }}">{{ field.text }}</label>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" id="{{plugin.identifier}}"
+                                class="btn btn-primary drop-ucitavanje">Load data
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- Search -->
+    <div class="container-fluid float-right p-2">
+        <div class="custom-control custom-switch text-light px-5">
+            <input type="checkbox" class="custom-control-input" id="switch">
+            <label class="custom-control-label" for="switch" id="switch_text">Search</label>
+        </div>
+        <input class="form-control mr-sm-2 p-2" id="search" type="search"
+            placeholder="Type node name or regular expression" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0 mr-5" type="submit" id="submit_button">
+            Submit
+        </button>
+    </div>
+</nav>
+
+<script>
+
+    $('#switch').change(function () {
+        if ($("#switch_text").text() == 'Search')
+            $("#switch_text").text('Filter')
+        else
+            $("#switch_text").text('Search')
+    });
+
+    $(".drop-ucitavanje").each(function () {
+        $(this).click(function (event) {
+            event.preventDefault();
+
+            let novi_plugin = $(this).attr('id');
+
+            // uzmi parametre iz forme
+            let parameters = "";
+            let formFields = $(".form-control." + novi_plugin)
+            for (let filed of formFields) {
+                // validacija
+                if (!filed.value.trim()) {
+                    alert("Morate da popunite sva polja");
+                    return;
+                }
+                parameters += filed.name + "=" + filed.value + "&";
+            }
+
+            // izvuci parametre iz check input formi
+            let checkInputFields = $(".form-check-input." + novi_plugin)
+            for (let filed of checkInputFields) {
+                parameters += filed.name + "=" + $("#" + filed.id).is(':checked') + "&";
+            }
+
+            $(".modal").fadeOut();
+
+            //ne dozvoli da klikce na ucitavanje dok se ne zavrsi
+            $('#ucitavanjeDrop').prop('disabled', true);
+            // load animacija            
+            let elem = $('<div>').addClass('loader-wrapper')
+                .append($('<span>').addClass('loader')
+                    .append($('<span>').addClass('loader-inner')))
+            $('#glavniPrikaz').prepend(elem);
+
+
+            // substringujem jer ostanu &= viska na kraju stringa
+            // u slucaju da je prazna lista
+            if (parameters){
+                parameters = parameters.substring(0, parameters.length - 1);
+            }
+
+            let url = window.location.href;
+            $.ajax({
+                type: "GET",
+                url: window.location.origin + '/ucitavanje/' + novi_plugin + '/' + parameters,
+                success: function (data) {
+                    alert("Podaci su uspesno ucitani");
+                    location.reload();
+                    $(".loader-wrapper").fadeOut();
+                    // dozvoli da opet klikne
+                    $('#ucitavanjeDrop').prop('disabled', false);
+                }
+            });
+        })
+    });
+
+</script>

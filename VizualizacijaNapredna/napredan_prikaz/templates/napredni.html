@@ -1,0 +1,619 @@
+<html>
+
+    <head>
+
+
+    </head>
+
+<body>
+    <script>
+
+draw = function draw(data, svg, container) {
+
+        
+
+        height = svg.node().getBoundingClientRect().height - 50,
+        width = svg.node().getBoundingClientRect().width - 50
+        // zoom = d3.behavior.zoom().scaleExtent([0.1 ,7])
+        color = d3.scale.category10();
+
+        var highlight_node = null;
+        var highlight_color = "#B8DE75";
+        var highlight_trans = 0.1;
+        var default_link_color = "#ccc";
+        var text_color = "#F3EBC9";
+
+        var nominal_base_node_size = 8;
+        var nominal_text_size = 10;
+        var max_text_size = 24;
+        var nominal_stroke = 1.5;
+        var max_stroke = 4.5;
+        var max_base_node_size = 36;
+
+
+        let points = [];
+
+        let rects = [];
+        let smallrects = [];
+        let test = [];
+        let texts = [];
+        let smalltexts = [];
+
+
+
+        let lines = [];
+        // var g = svg.append("g");
+
+        nodes = data.nodes;
+        links = data.links;
+
+        links.forEach(function(link) {
+            link.source = nodes.find(x => x.id == link.source_id)
+            link.target = nodes.find(x => x.id == link.target_id)
+            link.weight = Number(link.weight);
+        });
+
+         var linkedByIndex = [];
+         links.forEach(function(d) {
+            linkedByIndex.push(d.source_id + "," + d.target_id);
+          });
+
+          function isConnected(a, b) {
+                return linkedByIndex.includes(a.id + "," + b.id) || linkedByIndex.includes(b.id + "," + a.id) || a.id == b.id;
+         }
+
+        // //layout
+        var force = d3.layout.force()
+                    .size([width, height])
+                    .nodes(nodes)
+                    .links(links)
+                    .on("tick", tick)
+                    .gravity(0)
+                    .charge(-900)
+                    .linkDistance(3000)
+                    .start();
+
+        // elementi se centriraju kad se menja window size
+        d3.select(window).on('resize', function() {
+            height = svg.node().getBoundingClientRect().height - 50;
+            width = svg.node().getBoundingClientRect().width - 50;
+            force.size([width, height]);
+            force.start();
+        });
+
+        var drag = force.drag().on("dragstart", function() {
+            d3.event.sourceEvent.stopPropagation();
+        });
+
+        //dodavanje veza izmedju cvorova
+        var link = container.selectAll(".link")
+                .data(links)
+                .enter()
+                .append("line")
+                .attr("class", "link")
+                .attr("stroke", default_link_color)
+                .attr("stroke-width", function(d){ return d.weight/2; });
+
+        //cvorovi se moraju dodati kasnije
+        // da se ne bi videle linije preko kruga
+        var node = container.selectAll(".node")
+                .data(nodes)
+                .enter()
+                .append("g")
+                .attr("class", "node")
+        
+        // Staro i nepotrebno
+        // function getCircleCoord(rad) {
+        //     let x = Math.cos(rad*360);
+        //     let y = Math.sin(rad*360);
+        //     console.log({rad:rad, x:x,y:y});
+        //     return {x:x,y:y};
+        // }
+
+
+        
+        
+
+
+        
+        function w(d) {
+            let max = 0;
+            let attributes = d.attributes;
+            for (let a of attributes){
+
+
+                let fontSize = attrFontSize(d);
+                let text = attrText(a.name);
+                let len = attrWidth(text,fontSize);
+                if (len>max) {
+                    max = len;
+                }
+                text = attrText(a.value);
+                len = attrWidth(text, fontSize);
+                if (len>max) {
+                    max = len;
+                }
+            }
+            let infl = d.influence>5 ? d.influence : 5;  
+            return 2*max*Math.sqrt(infl);
+        }
+        function h(d) {  
+            return d.attributes.length*d.influence*1.5;        
+        }
+        function x(d) {
+            return -w(d)/2;
+        }
+        function y(d) {
+            return -h(d)/2;
+        }
+        
+
+        function hgap(d) {
+            return h(d)*0.2/(d.attributes.length+1);
+        }
+        
+        function wsmall(d) {
+            return w(d)*0.45;
+        }
+        function hsmall(d) {
+            return h(d)*0.8/d.attributes.length;
+        }
+
+        function xsmall(d, i) {
+            return x(d)+0.03*w(d)*(i+1) + i*wsmall(d);
+        }
+
+        function ysmall(d, i) {
+            return hgap(d)*(i+1)+hsmall(d)*i + y(d) ;
+        }
+
+
+
+        function x1(d, i) {
+            return x(d)+0.03*w(d);
+
+        }
+        function yline(d, i) {
+            return ysmall(d, i)+fontHeightPx(attrFontSize(d));
+        }
+        function x2(d, i) {
+            return (0.5-0.03)*w(d);
+
+        }
+
+        
+        function xattr(d,i) {
+            return xsmall(d,i)+wsmall(d)/2;
+            // return xsmall(d,i) + (wsmall(d) - attrWidth(text, attrFontSize(d)))/2
+        }
+
+        function yattr(d, i) {
+            return ysmall(d,i)+hsmall(d)*2/3;
+            // return ysmall(d, i) + hsmall(d)*0.8;
+        }
+        
+        function attrFontSize(d) {
+            return d.influence*0.8 > 11 ? d.influence*0.8: 11;
+        }
+
+        function attrText(text) {
+            if(text.length>24){
+                return text.slice(0, 23);
+            }
+            return text;
+        }
+
+        function attrWidth(text, fontSize) {
+            let len = 1;
+            text = attrText(text);
+            if ((typeof text)!="string") {
+                len = text.toString().length;
+            }else{
+                len = text.length;
+            }
+            return len*fontWidthPx(fontSize);
+        }
+        function fontHeightPx(fontSize) {
+            return fontSize*1.328147;
+        }
+        function fontWidthPx(fontSize) {
+            return fontSize*0.12;
+        }
+        function LightenDarkenColor(col,amt) {
+            var usePound = false;
+            if ( col[0] == "#" ) {
+                col = col.slice(1);
+                usePound = true;
+            }
+
+            var num = parseInt(col,16);
+            
+            var r = (num >> 16) + amt;
+            
+            if ( r > 255 ) r = 255;
+            else if  (r < 0) r = 0;
+
+            var b = ((num >> 8) & 0x00FF) + amt;
+
+            if ( b > 255 ) b = 255;
+            else if  (b < 0) b = 0;
+            
+            var g = (num & 0x0000FF) + amt;
+            
+            if ( g > 255 ) g = 255;
+            else if  ( g < 0 ) g = 0;
+
+            return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
+        }
+        //Dodavanje teksta atributa
+        
+        
+
+        function mainTextFontSIze(d){ return d.influence * 2 > 11 ? d.influence*2: 11; }
+        
+
+        let advanced = false;
+
+        clear();
+
+        function clear() {
+            node.html("");
+             points = [];
+
+             rects = [];
+             smallrects = [];
+             test = [];
+             texts = [];
+             smalltexts = [];
+
+
+             lines = [];
+        }
+
+        function basicLook() {
+            if (!advanced) {
+                return;
+            }
+            clear();
+            // $(".node").empty();
+            points = node.append("circle")
+                .attr("r", function(d){ return 4*d.influence>5 ? 4*d.influence : 5; })
+                .attr("fill", function(d){ return color(d.group*10); })
+                .attr("data-legend",function(d) { return d.group});
+            texts = node.append("text")
+                .attr("dx", 15)
+                .attr("dy", function (d) {
+                    return -fontHeightPx(d.influence * 5 > 11 ? d.influence*5: 11);
+                })
+                .style('fill' , function(d) {  return d.bold ? 'yellow' : text_color})
+                .style("font-weight", function(d) {  return d.bold ? 'bold' : 'normal'})
+                .text(function(d){ return d.name; })
+                .attr("font-size", function(d){ return d.influence * 5 > 11 ? d.influence*5: 11; })
+
+            advanced = false;
+        }
+
+        function advancedLook() {
+            if(advanced){
+                return;
+            }
+            // $(".node").empty();
+            // node.empty();
+            clear();
+            // node.remove();
+            rects = node.append("rect")
+                .attr("rx", 16)
+                .attr("ry", 16)
+                .attr("x", x)
+                .attr("y", y)
+                .attr("width", w)
+                .attr("height", h)
+                .attr("fill", function(d){
+                    return color(d.group*10); })
+                .attr("data-legend",function(d) { return d.group});
+
+            // Glavni tekst
+            texts = node.append("text")
+                .attr("dx", function(d) {
+                    return x(d);
+                })
+                .attr("dy", function(d) {
+                    return y(d)-fontHeightPx(mainTextFontSIze(d));
+                })
+                .text(function(d){ return d.name; })
+                .style('fill' , function(d) {  return d.bold ? 'yellow' : text_color})
+                .attr("font-size", mainTextFontSIze);
+
+
+            node.each(function (d, i) {
+                let n = d3.select(this);
+                let attributes = d.attributes;
+                let j = 0;
+                for (let a of attributes){
+                    if(j!=attributes.length-1){
+                        lines.push(
+                        n.append("line")
+                            .attr("x1", x1)
+                            .attr("y1",function (d) {
+                                return yline(d, j);
+                            })
+                            .attr("x2", x2)
+                            .attr("y2",function (d) {
+                                return yline(d, j);
+                            })
+                            .style("stroke", function(d){ return LightenDarkenColor(color(d.group*10),-15);})
+                            .style('stroke-width',5 )
+                    );
+                    }
+                    
+                    // smallrects.push(
+                    // n.append("rect")
+                    //     .attr("rx", 6)
+                    //     .attr("ry", 6)
+                    //     .attr("x", function (d) {
+                    //         return xsmall(d, 0);
+                    //     })
+                    //     .attr("y", function (d) {
+                    //         return ysmall(d, j);
+                    //     })
+                    //     .attr("width", wsmall)
+                    //     .attr("height", hsmall)
+                    //     .attr("fill", function(d){ return LightenDarkenColor(color(d.group*10),-15); })
+                    //     .attr("data-legend",function(d) { return d.group})
+                    // );
+                    // smallrects.push(
+                    //     n.append("rect")
+                    //         .attr("rx", 6)
+                    //         .attr("ry", 6)
+                    //         .attr("x", function (d) {
+                    //             return xsmall(d, 1);
+                    //         })
+                    //         .attr("y", function (d) {
+                    //             return ysmall(d, j);
+                    //         })
+                    //         .attr("width", wsmall)
+                    //         .attr("height", hsmall)
+                    //         .attr("fill", function(d){ return LightenDarkenColor(color(d.group*10),-15); })
+                    //         .attr("data-legend",function(d) { return d.group})
+                    // );
+
+                    smalltexts.push(
+                        n.append("text")
+                            .attr("dx", function(d) {
+                                return xattr(d, 0)
+                            })
+                            .attr("dy",function(d) {
+                                return ysmall(d, j);
+                            })
+                            .text(function(d){ return attrText(a.name); })
+                            .style('fill' , function(d) {  return d.bold ? 'yellow' : text_color})
+                            .style("text-anchor","middle")
+                            .attr("font-size", 13)
+                            .attr("font-size", attrFontSize)
+                    );
+                    smalltexts.push(
+                        n.append("text")
+                            .attr("dx", function(d) {
+                                
+                                return xattr(d, 1);
+                            })
+                            .attr("dy",function(d) {
+                                return ysmall(d, j);
+                            })
+                            .text(attrText(a.value))
+                            .style('fill' , function(d) {  return d.bold ? 'yellow' : text_color})
+                            .style("text-anchor","middle")
+                            .attr("font-size", attrFontSize)
+                    );
+                    j++;
+                }
+            });
+
+
+
+
+            //Atributi
+            // let i = 0;
+
+            // for(let attr of attributes){
+                
+            //     smallrects.push(
+            //         node.append("rect")
+            //             .attr("rx", 6)
+            //             .attr("ry", 6)
+            //             .attr("x", function (d) {
+            //                 return xsmall(d, 0);
+            //             })
+            //             .attr("y", function (d) {
+            //                 return ysmall(d, i);
+            //             })
+            //             .attr("width", wsmall)
+            //             .attr("height", hsmall)
+            //             .attr("fill", function(d){ return LightenDarkenColor(color(d.group*10),-15); })
+            //             .attr("data-legend",function(d) { return d.group})
+            //     );
+            //     smallrects.push(
+            //         node.append("rect")
+            //             .attr("rx", 6)
+            //             .attr("ry", 6)
+            //             .attr("x", function (d) {
+            //                 return xsmall(d, 1);
+            //             })
+            //             .attr("y", function (d) {
+            //                 return ysmall(d, i);
+            //             })
+            //             .attr("width", wsmall)
+            //             .attr("height", hsmall)
+            //             .attr("fill", function(d){ return LightenDarkenColor(color(d.group*10),-15); })
+            //             .attr("data-legend",function(d) { return d.group})
+            //     );
+
+            //     smalltexts.push(
+            //         node.append("text")
+            //             .attr("dx", function(d) {
+            //                 return xattr(d, 0, attr)
+            //             })
+            //             .attr("dy",function(d) {
+            //                 return ysmall(d, i);
+            //             })
+            //             .text(function(d){ return attr; })
+            //             .style('fill' , text_color)
+            //             .style("text-anchor","middle")
+            //             .attr("font-size", 13)
+            //             .attr("font-size", attrFontSize)
+            //     );
+            //     smalltexts.push(
+            //     node.append("text")
+            //         .attr("dx", function(d) {
+                        
+            //             return xattr(d, 1, d.attributes[attr]);
+            //         })
+            //         .attr("dy",function(d) {
+            //             return ysmall(d, i);
+            //         })
+            //         .text(function(d){ return d.attributes[attr]; })
+            //         .style('fill' , text_color)
+            //         .style("text-anchor","middle")
+            //         .attr("font-size", 13)
+            //         .attr("font-size", attrFontSize)
+            //     );
+            //     i++;
+            // }
+            advanced = true;
+        }
+
+
+        function tick (d){
+            
+            node.attr("transform", function(d) {return "translate(" + d.x + "," + d.y + ")";})
+                .call(force.drag);
+                
+                
+            //TODO
+            let scale = container.attr("");
+            
+
+            //koordinate veza
+            link.attr("x1", function(d){ return d.source.x; })
+            link.attr("y1", function(d){ return d.source.y; })
+            link.attr("x2", function(d){ return d.target.x; })
+            link.attr("y2", function(d){ return d.target.y; });
+        }
+
+        node.on("mouseover", function(d) {
+            set_highlight(d);
+        })
+            .on("mouseout", function(d) {
+                exit_highlight();
+        });
+
+
+        
+        
+
+        function exit_highlight()
+        {
+            function scaleSameDown(o){
+                    if(o.id === highlight_node.id){
+                        return "scale(1)" ;
+                    }
+                }
+            texts.attr("transform",scaleSameDown);
+            
+            container.style("cursor","move");
+            if(advanced){
+                rects.style("stroke", "white");
+                rects.style('stroke-width', 0);
+                
+                rects.attr("transform", scaleSameDown);
+                
+                smalltexts.forEach(e=>{e.attr("transform", scaleSameDown)});
+                // smallrects.forEach(e=>{e.attr("transform", scaleSameDown)});
+                lines.forEach(e=>{e.attr("transform", scaleSameDown)});
+
+            }else{
+                points.style("stroke", "white");
+                points.style('stroke-width', 0);
+                points.attr("transform", scaleSameDown);
+
+            }
+            texts.style("font-weight", "normal");
+            link.style("stroke", function(o) {return (isNumber(o.score) && o.score>=0)?color(o.score):default_link_color});
+            highlight_node = null;
+
+        }
+
+
+        function set_highlight(d)
+        {
+
+            function scaleSameUp(o){
+                    if(o.id === d.id){
+                        return "scale(1.5)";
+                    }
+                }
+
+            texts.attr("transform", scaleSameUp);
+            
+            container.style("cursor","pointer");
+            highlight_node = d;
+            if(advanced){
+                
+                rects.style("stroke", function(o) {
+                    return isConnected(d, o) ? highlight_color : "white";
+                });
+                rects.style('stroke-width', function(o) {
+                    return isConnected(d, o) ? 10 : 0;
+                });
+
+                
+                rects.attr("transform", scaleSameUp);
+                smalltexts.forEach(e=>{
+                    e.attr("transform", scaleSameUp)
+                });
+                // smallrects.forEach(e=>{e.attr("transform", scaleSameUp)});
+                lines.forEach(e=>{e.attr("transform", scaleSameUp)});
+
+            }else{
+                points.style("stroke", function(o) {
+                    return isConnected(d, o) ? highlight_color : "white";
+                });
+                points.style('stroke-width', function(o) {
+                    return isConnected(d, o) ? 10 : 0;
+                });
+                points.attr("transform", scaleSameUp);
+            }
+            texts.style("font-weight", function(o) {
+                return isConnected(d, o) ? 550 : "normal";
+            });
+            link.style("stroke", function(o) {
+                return o.source.index == d.index || o.target.index == d.index ? highlight_color : ((isNumber(o.score) && o.score>=0)?color(o.score):default_link_color);
+            });
+        }
+
+        function isNumber(n) {
+          return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+        function responsiveLook() {
+            let transform = d3.transform(container.attr("transform"));
+            if(transform){
+                
+                let scales = transform.scale;
+                let scale = scales[0];
+                if (scale>=0.1){
+                    advancedLook();
+                }else{
+                    basicLook();
+                }
+            }
+        }
+        
+        advancedLook();
+        // setInterval(responsiveLook,300);
+        let r = new ResizeObserver(responsiveLook);
+        r.observe(container.node());
+        for (var i = 200; i > 0; --i) force.tick();
+    }       
+    </script>
+</body>
+</html>

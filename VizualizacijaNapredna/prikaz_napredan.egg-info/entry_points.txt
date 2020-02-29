@@ -1,0 +1,3 @@
+[prikaz]
+prikaz_napredan = napredan_prikaz.kod.prikaz_kod:PrikaziNapredan
+

@@ -1,0 +1,3 @@
+[prikaz]
+prikaz_obican = prikaz.kod.prikaz_kod:Prikazi
+

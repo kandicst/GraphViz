@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block prikaz %}
+<div class="row h-100">
+    <div class="col-3 h-100" id="treeview">
+        {% if request.session.plugin_ucitavanje_ime %}
+        <ul id="myUl">
+            <li class="text"><span class="caret">
+
+                {{request.session.plugin_ucitavanje_ime}}
+
+            </span>
+                <ul id="root-node" class="nested active">
+                    {% for node in nodes %}
+                    <li  id="{{node.name}}" class="tree-node"><p class="caret indent-level1 item">{{ node.name }}</p>
+                        <ul class="nested">
+                            {% for attribute in node.attributes.all %}
+                            <li class="indent-level2 item"><strong>{{ attribute.name }}:</strong>
+                                {{attribute.value }}
+                            </li>
+                            {% endfor %}
+
+                            <li><p class="caret indent-level2 item">Nodes that have links to this node</p>
+                                <ul class="nested">
+                                    {% for link in node.get_links_to_this_node %}
+                                    <li class="indent-level3 item">{{ link.source.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+
+
+                            <li><p class="caret indent-level2 item">Nodes this node has links to</p>
+                                <ul class="nested">
+                                    {% for link in node.get_links_from_this_node %}
+                                    <li class="indent-level3 item">{{ link.target.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+        {% endif %}
+    </div>
+
+    <div class="p-0 col-9 h-100">
+        <div class="page">
+            <div class="center" id="glavniPrikaz">
+                <svg id="canvas">
+                    <g id="group" ></g>
+                </svg>
+
+                {% load static %}
+                <script src="{% static 'js/PanZoom.js' %}"></script>
+                <script src="{% static 'js/main.js' %}"></script>
+                <script src="{% static 'js/SearchFilter.js' %}"></script>
+
+                {% block component %}{% endblock %}
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="center pt-5" id="bird">
+        <svg id="birdsvg">
+            <g id="birdg" transform="scale(0.03)"></g>
+        </svg>
+    </div>
+</div>
+
+
+<script>
+    $(".caret").click(event => {
+        let target = $(event.target);
+        target.toggleClass("caret-down");
+        target.parent().children(".nested").toggleClass("active");
+    })
+
+
+
+</script>
+
+{% endblock %}

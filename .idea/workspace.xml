@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="86a1277f-9992-46a0-931a-0294fbe90e6a" name="Default" comment="nodes highlighting">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/D3Core/d3_primeri/templates/Output.html" beforeDir="false" afterPath="$PROJECT_DIR$/D3Core/d3_primeri/templates/Output.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/D3Core/d3_primeri/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/D3Core/d3_primeri/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/D3Core/d3_primeri/templates/primerPanZoom.html" beforeDir="false" afterPath="$PROJECT_DIR$/D3Core/d3_primeri/templates/primerPanZoom.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vizualizacija/prikaz/kod/forceMOJ.html" beforeDir="false" afterPath="$PROJECT_DIR$/Vizualizacija/prikaz/kod/forceMOJ.html" afterDir="false" />
+    <list default="true" id="86a1277f-9992-46a0-931a-0294fbe90e6a" name="Default" comment="greska kada se unese nepostojeci github korisnik">
+      <change beforePath="$PROJECT_DIR$/VizualizacijaNapredna/napredan_prikaz/templates/napredni.html" beforeDir="false" afterPath="$PROJECT_DIR$/VizualizacijaNapredna/napredan_prikaz/templates/napredni.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,32 +19,43 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Users\Stefan\Desktop\Treca Godina\Softverski obrasci i komponente\Projekat\tim3\GraphViz\.idea" />
+      </set>
+    </option>
   </component>
   <component name="ProjectId" id="1V6CeA9B0iY25foeu6erDuzqCdY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/django_project/manage.py" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Stefan\Desktop\Treca Godina\Softverski obrasci i komponente\09\D3Core\d3_primeri\static\css" />
-      <recent name="$PROJECT_DIR$/D3Core/d3_primeri/templates" />
+      <recent name="C:\Users\Stefan\Desktop\Treca Godina\Softverski obrasci i komponente\Projekat\tim3\GraphViz\Vizualizacija\prikaz" />
+      <recent name="C:\Users\Stefan\Desktop\Treca Godina\Softverski obrasci i komponente\Projekat\tim3\GraphViz\UcitavanjeFilmovi" />
+      <recent name="C:\Users\Stefan\Desktop\Treca Godina\Softverski obrasci i komponente\Projekat\tim3\GraphViz\Data" />
+      <recent name="C:\Users\Stefan\Desktop\Treca Godina\Softverski obrasci i komponente\Projekat\tim3\GraphViz\VizualizacijaNapredna\napredan_prikaz\templates" />
+      <recent name="C:\Users\Stefan\Desktop\Treca Godina\Softverski obrasci i komponente\Projekat\tim3\GraphViz\VizualizacijaNapredna\napredan_prikaz" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Stefan\Desktop\Treca Godina\Softverski obrasci i komponente\09\D3Core\d3_primeri\static" />
-      <recent name="C:\Users\Stefan\Desktop\Treca Godina\Softverski obrasci i komponente\09\Vizualizacija\prikaz\kod" />
-      <recent name="C:\Users\Stefan\Desktop\Treca Godina\Softverski obrasci i komponente\09\D3Core\d3_primeri\templates" />
-      <recent name="C:\Users\Stefan\Desktop\Treca Godina\Softverski obrasci i komponente\09" />
-      <recent name="$PROJECT_DIR$" />
+      <recent name="C:\Users\Stefan\Desktop\Treca Godina\Softverski obrasci i komponente\Projekat\tim3\GraphViz\Core" />
+      <recent name="C:\Users\Stefan\Desktop\Treca Godina\Softverski obrasci i komponente\Projekat\tim3\GraphViz\UcitavanjeFilmovi\ucitavanje_filmovi\data" />
+      <recent name="C:\Users\Stefan\Desktop\Treca Godina\Softverski obrasci i komponente\Projekat\tim3\GraphViz\VizualizacijaNapredna\napredan_prikaz\templates" />
+      <recent name="C:\Users\Stefan\Desktop\Treca Godina\Softverski obrasci i komponente\Projekat\tim3\GraphViz\Vizualizacija\temp" />
+      <recent name="C:\Users\Stefan\Desktop\Treca Godina\Softverski obrasci i komponente\Projekat\tim3\GraphViz\Vizualizacija\prikaz\templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -83,19 +90,19 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <configuration name="01 D3 primeri setup" type="PythonConfigurationType" factoryName="Python">
-      <module name="Vezbe9" />
+    <configuration name="01 Core setup" type="PythonConfigurationType" factoryName="Python">
+      <module name="SOK" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/D3Core" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="SDK_HOME" value="C:\Users\Stefan\VirtualEnv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Core" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="false" />
       <option name="ADD_SOURCE_ROOTS" value="false" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/D3Core/setup.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Core/setup.py" />
       <option name="PARAMETERS" value="develop" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -105,19 +112,19 @@
       <method v="2" />
     </configuration>
     <configuration name="02 Kreiranje skripte za migraciju" type="PythonConfigurationType" factoryName="Python">
-      <module name="Vezbe9" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\Stefan\VirtualEnv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/django_project" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="false" />
       <option name="ADD_SOURCE_ROOTS" value="false" />
+      <module name="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/django_project/manage.py" />
-      <option name="PARAMETERS" value="makemigrations d3_primeri" />
+      <option name="PARAMETERS" value="makemigrations core_module" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -126,17 +133,17 @@
       <method v="2" />
     </configuration>
     <configuration name="03 Kreiranje seme baze" type="PythonConfigurationType" factoryName="Python">
-      <module name="Vezbe9" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\Stefan\VirtualEnv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/django_project" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="false" />
       <option name="ADD_SOURCE_ROOTS" value="false" />
+      <module name="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/django_project/manage.py" />
       <option name="PARAMETERS" value="migrate" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -146,16 +153,37 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Pokreni server" type="PythonConfigurationType" factoryName="Python">
-      <module name="Vezbe9" />
+    <configuration name="Obrisi elemente iz baze" type="PythonConfigurationType" factoryName="Python">
+      <module name="SOK" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\Stefan\VirtualEnv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/django_project" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="false" />
+      <option name="ADD_SOURCE_ROOTS" value="false" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/django_project/manage.py" />
+      <option name="PARAMETERS" value="sqlflush" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Pokreni server" type="PythonConfigurationType" factoryName="Python">
+      <module name="SOK" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Stefan\VirtualEnv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/django_project" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="false" />
       <option name="ADD_SOURCE_ROOTS" value="false" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/django_project/manage.py" />
@@ -167,19 +195,19 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Ucitavanje kod setup" type="PythonConfigurationType" factoryName="Python">
-      <module name="Vezbe9" />
+    <configuration name="Ucitavanje filmovi setup" type="PythonConfigurationType" factoryName="Python">
+      <module name="SOK" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UcitavanjeKod" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="SDK_HOME" value="C:\Users\Stefan\VirtualEnv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UcitavanjeFilmovi" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="false" />
       <option name="ADD_SOURCE_ROOTS" value="false" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/UcitavanjeKod/setup.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/UcitavanjeFilmovi/setup.py" />
       <option name="PARAMETERS" value="develop" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -188,8 +216,29 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Ucitavanje prikaz setup" type="PythonConfigurationType" factoryName="Python">
-      <module name="Vezbe9" />
+    <configuration name="Ucitavanje github setup" type="PythonConfigurationType" factoryName="Python">
+      <module name="SOK" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Stefan\VirtualEnv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UcitavanjeGitHubUsers" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="false" />
+      <option name="ADD_SOURCE_ROOTS" value="false" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/UcitavanjeGitHubUsers/setup.py" />
+      <option name="PARAMETERS" value="develop" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Vizualizacija obicna setup" type="PythonConfigurationType" factoryName="Python">
+      <module name="SOK" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -209,20 +258,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="prikaz_kod" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Vizulaizacija napredna setup" type="PythonConfigurationType" factoryName="Python">
       <module name="Vezbe9" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Vizualizacija/prikaz/kod" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Vizualizacija/prikaz/kod/prikaz_kod.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="SDK_HOME" value="C:\Users\Stefan\VirtualEnv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/VizualizacijaNapredna" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="false" />
+      <option name="ADD_SOURCE_ROOTS" value="false" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/VizualizacijaNapredna/setup.py" />
+      <option name="PARAMETERS" value="develop" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -231,19 +280,16 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.01 D3 primeri setup" />
+      <item itemvalue="Python.01 Core setup" />
       <item itemvalue="Python.02 Kreiranje skripte za migraciju" />
       <item itemvalue="Python.03 Kreiranje seme baze" />
-      <item itemvalue="Python.Ucitavanje kod setup" />
-      <item itemvalue="Python.Ucitavanje prikaz setup" />
+      <item itemvalue="Python.Obrisi elemente iz baze" />
+      <item itemvalue="Python.Ucitavanje filmovi setup" />
+      <item itemvalue="Python.Ucitavanje github setup" />
+      <item itemvalue="Python.Vizualizacija obicna setup" />
+      <item itemvalue="Python.Vizulaizacija napredna setup" />
       <item itemvalue="Python.Pokreni server" />
-      <item itemvalue="Python.prikaz_kod" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.prikaz_kod" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -256,14 +302,350 @@
       <option name="presentableId" value="Default" />
       <updated>1481367724118</updated>
     </task>
-    <task id="LOCAL-00001" summary="nodes highlighting">
-      <created>1579845832802</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
+    <task id="LOCAL-00004" summary="ucitao podatke u prikaz">
+      <created>1580132532003</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1579845832802</updated>
+      <updated>1580132532003</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00005" summary="moram komit da bih merge uradio">
+      <created>1580251335896</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1580251335896</updated>
+    </task>
+    <task id="LOCAL-00006" summary="moram komit da bih merge uradio">
+      <created>1580252122250</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1580252122250</updated>
+    </task>
+    <task id="LOCAL-00007" summary="uzeo je staru verziju mog template">
+      <created>1580252594137</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1580252594137</updated>
+    </task>
+    <task id="LOCAL-00008" summary="promenio folder">
+      <created>1580259502820</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1580259502820</updated>
+    </task>
+    <task id="LOCAL-00009" summary="dodao dropdown za izbor nacina prikaza grafa">
+      <created>1580268987425</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1580268987425</updated>
+    </task>
+    <task id="LOCAL-00010" summary="poboljsao izbor prikaza, dodao ucitavanje u naprednoj viz">
+      <created>1580276226782</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1580276226782</updated>
+    </task>
+    <task id="LOCAL-00011" summary="promenio nacin renderovanja, poboljsao izbor plugina">
+      <created>1580434282981</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1580434282981</updated>
+    </task>
+    <task id="LOCAL-00012" summary="animacija za ucitavanje">
+      <created>1580437922979</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1580437922979</updated>
+    </task>
+    <task id="LOCAL-00013" summary="sredio malo core">
+      <created>1580775040493</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1580775040493</updated>
+    </task>
+    <task id="LOCAL-00014" summary="dodao drawer za izbor komponente za prikaz">
+      <created>1580788230774</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1580788230774</updated>
+    </task>
+    <task id="LOCAL-00015" summary="promenio layout prikaza na 3 komponente">
+      <created>1580870450346</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1580870450346</updated>
+    </task>
+    <task id="LOCAL-00016" summary="ispravio bug sa ne prepoznavanjem plugina za ucitavanje">
+      <created>1580872845605</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1580872845606</updated>
+    </task>
+    <task id="LOCAL-00017" summary="izbrisao stari model i sredio malo plugin za prikaz">
+      <created>1580893909855</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1580893909855</updated>
+    </task>
+    <task id="LOCAL-00018" summary="promenio ucitavanje podataka za prikaz, sada se prosledjuju pluginima">
+      <created>1580903057203</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1580903057203</updated>
+    </task>
+    <task id="LOCAL-00019" summary="obrisao home page">
+      <created>1580923685675</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1580923685675</updated>
+    </task>
+    <task id="LOCAL-00020" summary="sad radi filter">
+      <created>1580932002804</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1580932002804</updated>
+    </task>
+    <task id="LOCAL-00021" summary="sada radi i search">
+      <created>1580934992625</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1580934992625</updated>
+    </task>
+    <task id="LOCAL-00022" summary="opet samo sredjivao core, sada efikasnije ucitava podatke">
+      <created>1580966916622</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1580966916622</updated>
+    </task>
+    <task id="LOCAL-00023" summary="parametrizovao plugine za prikaz">
+      <created>1581029869815</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1581029869815</updated>
+    </task>
+    <task id="LOCAL-00024" summary="parametrizovao plugine za prikaz">
+      <created>1581030057916</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1581030057916</updated>
+    </task>
+    <task id="LOCAL-00025" summary="ispravio gresku u slanju parametara forme">
+      <created>1581032461060</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1581032461060</updated>
+    </task>
+    <task id="LOCAL-00026" summary="merge error ispravio">
+      <created>1581032772858</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1581032772858</updated>
+    </task>
+    <task id="LOCAL-00027" summary="merge">
+      <created>1581074507373</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1581074507373</updated>
+    </task>
+    <task id="LOCAL-00028" summary="merge">
+      <created>1581074530627</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1581074530627</updated>
+    </task>
+    <task id="LOCAL-00029" summary="merge">
+      <created>1581074564445</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1581074564445</updated>
+    </task>
+    <task id="LOCAL-00030" summary="promenio interfejs za prikaz, i dodao komentare na neke delove koda">
+      <created>1581130369221</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1581130369221</updated>
+    </task>
+    <task id="LOCAL-00031" summary="weight za github korisnike">
+      <created>1581130696042</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1581130696042</updated>
+    </task>
+    <task id="LOCAL-00032" summary="ispravio bug sa loaderom">
+      <created>1581167569189</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1581167569189</updated>
+    </task>
+    <task id="LOCAL-00033" summary="merge">
+      <created>1581167683750</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1581167683750</updated>
+    </task>
+    <task id="LOCAL-00034" summary="ucitavanje fajlova preko pkg_resource">
+      <created>1581176441088</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1581176441088</updated>
+    </task>
+    <task id="LOCAL-00035" summary="slucajno obrnuo setup za prikaze">
+      <created>1581176733702</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1581176733702</updated>
+    </task>
+    <task id="LOCAL-00036" summary="malo sredio influence za github ucitavanje">
+      <created>1581177892567</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1581177892567</updated>
+    </task>
+    <task id="LOCAL-00037" summary="doda builder sablon za plugine za prikaz">
+      <created>1581217873252</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1581217873252</updated>
+    </task>
+    <task id="LOCAL-00038" summary="init za data i dodao min_max za influence vrednosti">
+      <created>1581263437283</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1581263437283</updated>
+    </task>
+    <task id="LOCAL-00039" summary="ubacio klas dijagram i stavio direktora u CoreConfig">
+      <created>1581294289199</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1581294289199</updated>
+    </task>
+    <task id="LOCAL-00040" summary="sad se salju i atributi cvorova">
+      <created>1581344056437</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1581344056437</updated>
+    </task>
+    <task id="LOCAL-00041" summary="ispravka za mijatov plugin">
+      <created>1581344331442</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1581344331442</updated>
+    </task>
+    <task id="LOCAL-00042" summary="merge">
+      <created>1581370481709</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1581370481709</updated>
+    </task>
+    <task id="LOCAL-00043" summary="sredio depth i sada fit radi na obicnom prikazu">
+      <created>1581377331202</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1581377331202</updated>
+    </task>
+    <task id="LOCAL-00044" summary="sada search i filter rade render svih, a ne samo draw glavne komponente">
+      <created>1581382785465</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1581382785465</updated>
+    </task>
+    <task id="LOCAL-00045" summary="malo se igrao sa parametrima prikaza">
+      <created>1581391149472</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1581391149472</updated>
+    </task>
+    <task id="LOCAL-00046" summary="power designer projekat za dijagrame">
+      <created>1581692517865</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1581692517865</updated>
+    </task>
+    <task id="LOCAL-00047" summary="merge">
+      <created>1581705510469</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1581705510469</updated>
+    </task>
+    <task id="LOCAL-00048" summary="dodao port na dijagram komponenti">
+      <created>1581706488055</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1581706488055</updated>
+    </task>
+    <task id="LOCAL-00049" summary="dodao komentare i parametre prikaza promenio opet">
+      <created>1581709367412</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1581709367412</updated>
+    </task>
+    <task id="LOCAL-00050" summary="nadam se poslednja verzija">
+      <created>1581711684581</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1581711684582</updated>
+    </task>
+    <task id="LOCAL-00051" summary="nadam se poslednja verzija v2">
+      <created>1581713480096</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1581713480096</updated>
+    </task>
+    <task id="LOCAL-00052" summary="greska kada se unese nepostojeci github korisnik">
+      <created>1581714925243</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1581714925243</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -271,7 +653,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -286,16 +670,43 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="nodes highlighting" />
-    <option name="LAST_COMMIT_MESSAGE" value="nodes highlighting" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="opet samo sredjivao core, sada efikasnije ucitava podatke" />
+    <MESSAGE value="parametrizovao plugine za prikaz" />
+    <MESSAGE value="ispravio gresku u slanju parametara forme" />
+    <MESSAGE value="merge error ispravio" />
+    <MESSAGE value="promenio interfejs za prikaz, i dodao komentare na neke delove koda" />
+    <MESSAGE value="weight za github korisnike" />
+    <MESSAGE value="ispravio bug sa loaderom" />
+    <MESSAGE value="ucitavanje fajlova preko pkg_resource" />
+    <MESSAGE value="slucajno obrnuo setup za prikaze" />
+    <MESSAGE value="malo sredio influence za github ucitavanje" />
+    <MESSAGE value="doda builder sablon za plugine za prikaz" />
+    <MESSAGE value="init za data i dodao min_max za influence vrednosti" />
+    <MESSAGE value="ubacio klas dijagram i stavio direktora u CoreConfig" />
+    <MESSAGE value="sad se salju i atributi cvorova" />
+    <MESSAGE value="ispravka za mijatov plugin" />
+    <MESSAGE value="sredio depth i sada fit radi na obicnom prikazu" />
+    <MESSAGE value="sada search i filter rade render svih, a ne samo draw glavne komponente" />
+    <MESSAGE value="malo se igrao sa parametrima prikaza" />
+    <MESSAGE value="power designer projekat za dijagrame" />
+    <MESSAGE value="merge" />
+    <MESSAGE value="dodao port na dijagram komponenti" />
+    <MESSAGE value="dodao komentare i parametre prikaza promenio opet" />
+    <MESSAGE value="nadam se poslednja verzija" />
+    <MESSAGE value="nadam se poslednja verzija v2" />
+    <MESSAGE value="greska kada se unese nepostojeci github korisnik" />
+    <option name="LAST_COMMIT_MESSAGE" value="greska kada se unese nepostojeci github korisnik" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/D3Core/d3_primeri/prodavnica_view.py</url>
-          <line>6</line>
-          <option name="timeStamp" value="7" />
+          <url>file://$PROJECT_DIR$/UcitavanjeGitHubUsers/ucitavanje_github_users/ucitavanje/ucitavanje.py</url>
+          <line>98</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
